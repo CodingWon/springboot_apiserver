@@ -9,6 +9,15 @@ public interface TodoService {
 
     TodoDTO get(Long tno);
 
+    //Insert
+    Long register(TodoDTO dto);
+
+    //Update
+    void modify(TodoDTO dto);
+
+    //Remove
+    void remove(Long tno);
+
 
     // Entity -> DTO
     default TodoDTO entitiyToDTO(Todo todo){
