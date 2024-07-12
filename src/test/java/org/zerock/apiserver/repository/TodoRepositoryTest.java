@@ -84,4 +84,11 @@ public class TodoRepositoryTest {
         log.info(result.getTotalElements());
         log.info(result.getContent());
     }
+
+    @Test
+    public void testQueryDsl1(){
+
+      todoRepository.search1();
+
+    }
 }
