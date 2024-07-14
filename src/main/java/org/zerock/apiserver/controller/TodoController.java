@@ -3,6 +3,7 @@ package org.zerock.apiserver.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
+import org.zerock.apiserver.domain.Todo;
 import org.zerock.apiserver.dto.PageRequestDTO;
 import org.zerock.apiserver.dto.PageResponseDTO;
 import org.zerock.apiserver.dto.TodoDTO;
@@ -54,4 +55,14 @@ public class TodoController {
         return Map.of("TNO",tno);
 
     }
+
+    @PutMapping("/{tno}")
+    public Map<String, String> modify(@PathVariable("tno") Long tno,
+                                      @RequestBody TodoDTO todoDTO){
+        todoDTO.setTno(tno);
+        todoService.modify(todoDTO);
+
+        return Map.of("RESULT","SUCCESS");
+    }
+
 }
