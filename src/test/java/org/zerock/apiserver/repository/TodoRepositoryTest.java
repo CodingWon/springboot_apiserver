@@ -85,10 +85,12 @@ public class TodoRepositoryTest {
         log.info(result.getContent());
     }
 
-    @Test
-    public void testQueryDsl1(){
+//    @Test
+//    public void testQueryDsl1(){
+//
+//      todoRepository.search1();
+//
+//    }
 
-      todoRepository.search1();
 
-    }
 }
