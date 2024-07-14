@@ -2,14 +2,13 @@ package org.zerock.apiserver.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.zerock.apiserver.dto.PageRequestDTO;
 import org.zerock.apiserver.dto.PageResponseDTO;
 import org.zerock.apiserver.dto.TodoDTO;
 import org.zerock.apiserver.service.TodoService;
+
+import java.util.Map;
 
 @RestController
 @Log4j2
@@ -31,4 +30,28 @@ public class TodoController {
         return todoService.getList(pageRequestDTO);
     }
 
+    /*
+    #
+
+    Request - http://localhost:8080/api/todo/
+      {
+        "title" : "Sample",
+        "content" : "Sample Content",
+        "dueDate" : "2024-07-14"
+      }
+
+     # Response
+     {
+        "TNO": 102
+      }
+    */
+    @PostMapping("/")
+    public Map<String, Long> register(@RequestBody TodoDTO dto){
+
+        log.info("todoDTO : " + dto);
+        Long tno = todoService.register(dto);
+
+        return Map.of("TNO",tno);
+
+    }
 }
