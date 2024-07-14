@@ -2,6 +2,7 @@ package org.zerock.apiserver.controller.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -16,4 +17,12 @@ public class CustomControllerAdvice {
     public ResponseEntity<?> notExist(NoSuchElementException e){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("msg",e.getMessage()));
     }
+    /*localhost:8080/api/todo/list?page=AAA
+      MethodArgumentNotValidException
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+     public ResponseEntity<?> notExist(MethodArgumentNotValidException e){
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(Map.of("msg",e.getMessage()));
+    }
+
 }
