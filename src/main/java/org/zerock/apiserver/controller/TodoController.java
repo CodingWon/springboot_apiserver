@@ -65,4 +65,11 @@ public class TodoController {
         return Map.of("RESULT","SUCCESS");
     }
 
+    @DeleteMapping("/{tno}")
+    public Map<String, String> remove (@PathVariable Long tno){
+
+        todoService.remove(tno);
+
+        return Map.of("RESULT","SUCCESS");
+    }
 }
